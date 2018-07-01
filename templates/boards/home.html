@@ -1,16 +1,8 @@
-{% load staticfiles %}<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>boards</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-</head>
-<body>
-<div class="container">
-<ol class="breadcrumb my-4">
-    <li class="breadcrumb-item active">Boards</li>
-</ol>
-
+{% extends 'boards/base.html' %}
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Boards</li>
+{% endblock %}
+{% block content %}
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -25,7 +17,7 @@
     {% for board in boards %}
         <tr>
         <td>
-            {{ board.name }}<br>
+            <a href="{% url 'boards:board_topics'  board.id %}">{{ board.name }}</a><br>
             <small class="text-muted d-block">{{ board.description }}</small>
         </td>
         <td class="align-middle">0</td>
@@ -36,6 +28,4 @@
     {% endfor %}
     </tbody>
 </table>
-</div>
-</body>
-</html>
+{% endblock %}
